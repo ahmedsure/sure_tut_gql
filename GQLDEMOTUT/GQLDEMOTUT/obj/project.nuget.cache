@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "5Vd6poBn1sO9J5tqzl+bJG9Ds1i7uQFw9T5Py17Jtj3hFiYs6lUwW6xyIxIM4CYY+eIlXuT2FqPJT5yam5cIUQ==",
+  "success": true,
+  "projectFilePath": "D:\\A_S\\AhmedSamirOwnFiles\\My_GraphQL_Tutorial\\repo\\sure_tut_gql\\GQLDEMOTUT\\GQLDEMOTUT\\GQLDEMOTUT.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aabdelaal\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\aabdelaal\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\aabdelaal\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\aabdelaal\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\aabdelaal\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\aabdelaal\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
