@@ -29,7 +29,7 @@ builder.Services
    .AddGraphQLServer()
    .AddQueryType<GQLQuery>()
    .AddType<UsersDescriptor>()
-   //.AddMutationType<Mutations>()
+   .AddMutationType<Mutations>()
    //.AddSubscriptionType<Subscriptions>()
    //.AddType<PlatformType>()
    .AddFiltering()

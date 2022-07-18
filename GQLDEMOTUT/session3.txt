@@ -1,0 +1,10 @@
+mutation{
+  addUserPost(input: {
+    postContent : "Hi My First Mutation Record From Mutaions " ,posterUser : "01b72b5b-955b-45a8-b6fe-efce8162a7db"
+  }) {
+    postOwner {
+      userName
+    },
+    postContent
+  }
+}
