@@ -1,0 +1,56 @@
+query{
+  user1St_Thread: users{
+    userName,
+    userProfilePath,
+    userPosts{
+      postContent
+      postOwner {
+        userName
+      }
+      postComments{
+        commentContent
+      }
+    }
+  }
+
+  userSec_Thread: users{
+    userName,
+    userProfilePath,
+    userPosts{
+      postContent
+      postOwner {
+        userName
+      }
+      postComments{
+        commentContent
+      }
+    }
+  }
+
+  userThird_Thread: users(
+                         order: {userName:ASC},
+                         where: {
+                             or: [
+                                   { userName: { contains: "User" } }, 
+                                  { userPosts: {any:true }}
+                                  ]
+                         }
+                         ){
+    userName,
+    userProfilePath,
+    userPosts{
+      postContent
+      postOwner {
+        userName
+      }
+      postComments{
+        commentContent,
+        commentComments{
+          commentOnPostID,
+          commentContent,
+          commentBy
+        }
+      }
+    }
+  }
+}

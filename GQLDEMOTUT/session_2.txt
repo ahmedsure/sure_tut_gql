@@ -1,0 +1,23 @@
+-- Using Pagenation
+query{
+    posts{
+      totalCount,
+      pageInfo {
+        hasNextPage,
+        hasPreviousPage
+      },
+      edges{
+        node {
+          postContent,
+          postOwner {
+            userName
+          },
+          postComments{
+            commentContent,
+            commentor {
+              userName
+            }
+          }
+        }
+      }
+    }
