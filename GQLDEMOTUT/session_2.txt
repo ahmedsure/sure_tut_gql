@@ -1,4 +1,7 @@
 -- Using Pagenation
+// C# Query 
+//     [UsePaging(MaxPageSize = 1000, IncludeTotalCount = true, DefaultPageSize = 10)]
+// GQL Query 
 query{
     posts{
       totalCount,

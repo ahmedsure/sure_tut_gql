@@ -5,6 +5,8 @@ using GQLDEMOTUT.GQL.Subscriptions;
 using GQLDEMOTUT.Entities;
 using GraphQL.Server.Ui.Voyager;
 using Microsoft.EntityFrameworkCore;
+using GQLDEMOTUT.GQL.Queries.Descriptos;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,6 +28,7 @@ builder.Services.AddPooledDbContextFactory<AppDbContext>((serviceProvider, optBu
 builder.Services
    .AddGraphQLServer()
    .AddQueryType<GQLQuery>()
+   .AddType<UsersDescriptor>()
    //.AddMutationType<Mutations>()
    //.AddSubscriptionType<Subscriptions>()
    //.AddType<PlatformType>()
@@ -69,6 +72,6 @@ app.UseEndpoints(endpoints =>
 app.UseGraphQLVoyager(new VoyagerOptions
 {
     GraphQLEndPoint = "/graphql"
-}, "/gql/voyager");
+}, "/ui/voyager");
 
 app.Run();
