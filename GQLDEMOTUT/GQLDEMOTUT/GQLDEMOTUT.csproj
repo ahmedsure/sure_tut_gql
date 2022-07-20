@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Remove="GQL\Types\**" />
-    <Content Remove="GQL\Types\**" />
-    <EmbeddedResource Remove="GQL\Types\**" />
-=======
     <Compile Remove="GQL\Queries\NodesExtentions\**" />
     <Compile Remove="GQL\Types\**" />
     <Content Remove="GQL\Queries\NodesExtentions\**" />
@@ -19,7 +14,6 @@
     <EmbeddedResource Remove="GQL\Queries\NodesExtentions\**" />
     <EmbeddedResource Remove="GQL\Types\**" />
     <None Remove="GQL\Queries\NodesExtentions\**" />
->>>>>>> Session_3
     <None Remove="GQL\Types\**" />
   </ItemGroup>
 
