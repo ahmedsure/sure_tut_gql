@@ -9,7 +9,7 @@ public partial class Post : BaseEntity<Guid>
 
     public virtual GQLUser PostOwner   { get; set; }
 
-    public virtual ICollection<ReactToPost> PostReactions { get; set; }
-    public virtual ICollection<CommentToPostOrComment> PostComments { get; set; }
+    public virtual ICollection<ReactToPost>? PostReactions { get; set; }
+    public virtual ICollection<CommentToPostOrComment>? PostComments { get; set; }
 
 }

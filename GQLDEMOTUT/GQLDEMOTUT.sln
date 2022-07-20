@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GQLDEMOTUT", "GQLDEMOTUT\GQLDEMOTUT.csproj", "{7672B6E6-D16D-4C59-986B-6F15CC9B9656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GQLDEMOTUT", "GQLDEMOTUT\GQLDEMOTUT.csproj", "{7672B6E6-D16D-4C59-986B-6F15CC9B9656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersNationalityAndForecastService", "UsersNationalityAndForecastService\UsersNationalityAndForecastService.csproj", "{6B3E54E9-7122-444C-8818-7F4E5909359D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7672B6E6-D16D-4C59-986B-6F15CC9B9656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7672B6E6-D16D-4C59-986B-6F15CC9B9656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7672B6E6-D16D-4C59-986B-6F15CC9B9656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B3E54E9-7122-444C-8818-7F4E5909359D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B3E54E9-7122-444C-8818-7F4E5909359D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B3E54E9-7122-444C-8818-7F4E5909359D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B3E54E9-7122-444C-8818-7F4E5909359D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
