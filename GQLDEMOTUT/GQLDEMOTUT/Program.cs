@@ -7,6 +7,7 @@ using GQLDEMOTUT.GQL.Queries.Descriptos;
 using GQLDEMOTUT.Services;
 using GQLDEMOTUT.GQL.DataLoaders;
 using HotChocolate.Execution;
+using GQLDEMOTUT.GQL.Subscriptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +43,7 @@ builder.Services
    .AddType<UsersDescriptor>()
    .AddTypeExtension<UsersQuery>()
    .AddMutationType<Mutations>()
-   //.AddSubscriptionType<Subscriptions>()
+   .AddSubscriptionType<Subscription>()
    .AddFiltering()
    .AddSorting()
    // allow to query a child object
@@ -59,7 +60,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 //app.UseApplicationDBMigration();
-// for GQL Subscriptions 
+// for GQL Subscription 
 app.UseWebSockets();
 
 app.UseHttpsRedirection();
