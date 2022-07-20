@@ -1,0 +1,37 @@
+query{
+ user1St_Thread: users{
+    id
+    userName,
+    userNationality,
+    userProfilePath,
+    weatherForecast {
+      temperatureC,
+      temperatureF,
+      summary
+    }
+    userPosts{
+      postContent
+      postOwner {
+        userName
+      }
+      postComments{
+        commentContent
+      }
+    }
+  }
+
+  userSec_Thread: users{
+    userName,
+    userProfilePath,
+    userPosts{
+      postContent
+      postOwner {
+        userName
+      }
+      postComments{
+        commentContent
+      }
+    }
+  }
+ 
+}

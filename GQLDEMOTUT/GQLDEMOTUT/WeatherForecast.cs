@@ -2,6 +2,7 @@ namespace GQLDEMOTUT
 {
     public class WeatherForecast
     {
+        public Guid? ForUser { get; set; } 
         public DateTime Date { get; set; }
 
         public int TemperatureC { get; set; }

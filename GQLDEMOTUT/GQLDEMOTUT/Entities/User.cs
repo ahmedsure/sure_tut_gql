@@ -1,4 +1,7 @@
 
+using System.ComponentModel.DataAnnotations.Schema;
+
+
 namespace GQLDEMOTUT.Entities;
 public partial class GQLUser : BaseEntity<Guid>
 {
@@ -6,12 +9,16 @@ public partial class GQLUser : BaseEntity<Guid>
    public string? UserProfilePath { get; set; }
    public string? UserProfileIMGPath { get; set; }
 
+    [NotMapped]
+    public string UserNationality { get; set; }
+
     public virtual ICollection<Post>? UserPosts { get; set; }
 
     public virtual ICollection<ReactToPost>? UserReactions { get; set; }
     public virtual ICollection<CommentToPostOrComment>? UserComments { get; set; }
     public virtual ICollection<GQLUsersNetwork>? UserFromNetworks { get; set; }
     public virtual ICollection<GQLUsersNetwork>? UsersToNetworks { get; set; }
+
 }
 public enum FrindshipDescription
 {

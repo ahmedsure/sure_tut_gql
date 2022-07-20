@@ -1,15 +1,21 @@
 using GQLDEMOTUT.Entities;
 using GQLDEMOTUT.GQL.Mutations;
 using GQLDEMOTUT.GQL.Queries;
-using GQLDEMOTUT.GQL.Subscriptions;
-using GQLDEMOTUT.Entities;
 using GraphQL.Server.Ui.Voyager;
 using Microsoft.EntityFrameworkCore;
 using GQLDEMOTUT.GQL.Queries.Descriptos;
+using GQLDEMOTUT.Services;
+using GQLDEMOTUT.GQL.DataLoaders;
+using HotChocolate.Execution;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(o =>
+                        o.AddDefaultPolicy(b =>
+                            b.AllowAnyHeader()
+                             .AllowAnyMethod()
+                             .AllowAnyOrigin()));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -24,14 +30,19 @@ builder.Services.AddPooledDbContextFactory<AppDbContext>((serviceProvider, optBu
     optBuilder.EnableSensitiveDataLogging(true);
     //optBuilder.UseInternalServiceProvider(serviceProvider);
 });
+builder.Services.AddScoped<NationalityAndForicastIntegrationServices>();
+builder.Services.AddScoped<UserWeatherForeCastDataLoader>();
+
 //builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString.Replace("|DataDirectory|", path)));
 builder.Services
    .AddGraphQLServer()
+   // we can mark all async resolvers as serial by default. or use [Serial] for each 
+   //.ModifyOptions(o => o.DefaultResolverStrategy = ExecutionStrategy.Serial)
    .AddQueryType<GQLQuery>()
    .AddType<UsersDescriptor>()
+   .AddTypeExtension<UsersQuery>()
    .AddMutationType<Mutations>()
    //.AddSubscriptionType<Subscriptions>()
-   //.AddType<PlatformType>()
    .AddFiltering()
    .AddSorting()
    // allow to query a child object

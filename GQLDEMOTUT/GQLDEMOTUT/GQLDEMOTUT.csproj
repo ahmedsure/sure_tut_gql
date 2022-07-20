@@ -7,8 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="GQL\Queries\NodesExtentions\**" />
+    <Compile Remove="GQL\Types\**" />
+    <Content Remove="GQL\Queries\NodesExtentions\**" />
+    <Content Remove="GQL\Types\**" />
+    <EmbeddedResource Remove="GQL\Queries\NodesExtentions\**" />
+    <EmbeddedResource Remove="GQL\Types\**" />
+    <None Remove="GQL\Queries\NodesExtentions\**" />
+    <None Remove="GQL\Types\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="GraphQL.Server.Core" Version="5.2.1" />
     <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="6.1.0" />
+    <PackageReference Include="GreenDonut" Version="12.12.1" />
     <PackageReference Include="HotChocolate" Version="12.12.1" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="12.12.1" />
     <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.12.1" />
@@ -18,10 +30,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="GQL\Types\" />
   </ItemGroup>
 
   <ItemGroup>
