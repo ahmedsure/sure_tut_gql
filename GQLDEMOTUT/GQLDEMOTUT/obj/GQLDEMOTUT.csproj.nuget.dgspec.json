@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[6.1.0, )"
             },
+            "GreenDonut": {
+              "target": "Package",
+              "version": "[12.12.1, )"
+            },
             "HotChocolate": {
               "target": "Package",
               "version": "[12.12.1, )"
