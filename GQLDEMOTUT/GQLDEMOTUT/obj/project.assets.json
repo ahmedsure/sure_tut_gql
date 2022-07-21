@@ -2826,6 +2826,7 @@
     "net6.0": [
       "GraphQL.Server.Core >= 5.2.1",
       "GraphQL.Server.Ui.Voyager >= 6.1.0",
+      "GreenDonut >= 12.12.1",
       "HotChocolate >= 12.12.1",
       "HotChocolate.AspNetCore >= 12.12.1",
       "HotChocolate.Data.EntityFramework >= 12.12.1",
@@ -2888,6 +2889,10 @@
           "GraphQL.Server.Ui.Voyager": {
             "target": "Package",
             "version": "[6.1.0, )"
+          },
+          "GreenDonut": {
+            "target": "Package",
+            "version": "[12.12.1, )"
           },
           "HotChocolate": {
             "target": "Package",

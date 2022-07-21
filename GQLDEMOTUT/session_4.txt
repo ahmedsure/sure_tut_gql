@@ -1,0 +1,7 @@
+ng new sure-gql-demo
+// add the gql api path 
+// adding simple login by user id for example 
+// adding get user by id api in BE 
+// npm install apollo-angular @apollo/client graphql --save
+// set get posts and user init info after log in
+// npm install apollo-link-ws --save  

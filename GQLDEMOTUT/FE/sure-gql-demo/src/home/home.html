@@ -1,0 +1,13 @@
+
+  <!-- Terminal -->
+  <div class="row">
+    <div class="col col-12 ">
+      Welcome back {{userInitDataAndPosts?.userName}}
+    </div>
+    <div class="col col-12 ">
+      <div *ngFor="let item of userInitDataAndPosts?.userPosts">
+        <app-post [post]="item"></app-post>
+      </div>
+    </div>
+
+  </div>

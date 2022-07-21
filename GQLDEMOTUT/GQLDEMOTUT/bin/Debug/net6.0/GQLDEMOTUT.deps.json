@@ -10,6 +10,7 @@
         "dependencies": {
           "GraphQL.Server.Core": "5.2.1",
           "GraphQL.Server.Ui.Voyager": "6.1.0",
+          "GreenDonut": "12.12.1",
           "HotChocolate": "12.12.1",
           "HotChocolate.AspNetCore": "12.12.1",
           "HotChocolate.Data.EntityFramework": "12.12.1",

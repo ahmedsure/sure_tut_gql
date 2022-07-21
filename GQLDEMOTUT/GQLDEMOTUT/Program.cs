@@ -11,12 +11,8 @@ using GQLDEMOTUT.GQL.Subscriptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddCors(o =>
-                        o.AddDefaultPolicy(b =>
-                            b.AllowAnyHeader()
-                             .AllowAnyMethod()
-                             .AllowAnyOrigin()));
+// Add services to the container
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -61,9 +57,15 @@ if (app.Environment.IsDevelopment())
 }
 //app.UseApplicationDBMigration();
 // for GQL Subscription 
-app.UseWebSockets();
+app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
 app.UseHttpsRedirection();
+
+app.UseHttpsRedirection();
+app.UseWebSockets();
 
 
 app.MapControllers();
