@@ -7,15 +7,12 @@ using GQLDEMOTUT.GQL.Queries.Descriptos;
 using GQLDEMOTUT.Services;
 using GQLDEMOTUT.GQL.DataLoaders;
 using HotChocolate.Execution;
+using GQLDEMOTUT.GQL.Subscriptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddCors(o =>
-                        o.AddDefaultPolicy(b =>
-                            b.AllowAnyHeader()
-                             .AllowAnyMethod()
-                             .AllowAnyOrigin()));
+// Add services to the container
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -42,7 +39,7 @@ builder.Services
    .AddType<UsersDescriptor>()
    .AddTypeExtension<UsersQuery>()
    .AddMutationType<Mutations>()
-   //.AddSubscriptionType<Subscriptions>()
+   .AddSubscriptionType<Subscription>()
    .AddFiltering()
    .AddSorting()
    // allow to query a child object
@@ -59,10 +56,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 //app.UseApplicationDBMigration();
-// for GQL Subscriptions 
-app.UseWebSockets();
+// for GQL Subscription 
+app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
 app.UseHttpsRedirection();
+
+app.UseHttpsRedirection();
+app.UseWebSockets();
 
 
 app.MapControllers();

@@ -1,4 +1,5 @@
 ﻿using GQLDEMOTUT.Entities;
+using GQLDEMOTUT.GQL.Subscriptions;
 using HotChocolate.Subscriptions;
 
 namespace GQLDEMOTUT.GQL.Mutations;
@@ -23,6 +24,12 @@ public partial class Mutations
        var added = ( await _ctx.Posts.AddAsync(newPost, cancellationToken) ) .Entity;
         await _ctx.SaveChangesAsync(cancellationToken);
         // TODO  notify the subscribers 
+        // Send notifications to all of user frinds 
+        foreach (var friend in user.UsersToNetworks)
+        {
+            await eventSender.SendAsync($"{friend.Id}FollowPosts", newPost, cancellationToken);
+
+        }
         return added;
     }
 }
