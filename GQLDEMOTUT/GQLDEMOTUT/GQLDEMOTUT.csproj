@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DB\Book1.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DB\DBFile.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

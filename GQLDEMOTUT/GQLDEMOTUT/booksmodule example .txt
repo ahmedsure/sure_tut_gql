@@ -1,0 +1,227 @@
+
+public partial class Author : BaseEntity<int>{
+    public string  AuthorName { get; set; }
+    public DateTime? DateOfBirth { get; set; }
+    public ICollection<Book> AutherBooks { get; set; }
+}
+
+public partial class Publisher : BaseEntity<int> { 
+    public string PublisherName { get; set; }
+    public ICollection<Book> PublishedBooks { get; set; }
+}
+
+public partial class Book : BaseEntity<int>
+{
+    public int AutherId { get; set; }
+    public int PublisherId { get; set; }
+    public string BookName { get; set; }
+    public string BookDescription { get; set; }
+    public DateTime DateOfRelease { get; set; }
+    public byte Edetion { get; set; }
+    public string? Language { get; set; }
+    public string? GeneresTags { get; set; }
+    public string? Characters{ get; set; }
+    public int? NumberOfPages { get; set; }
+    [GraphQLName("ISBN")]
+    public string? ISBN { get; set; }
+    [NotMapped]
+    public int BookInventory { get; set; }
+    [NotMapped]
+    public int BookPriceInUSD { get; set; }
+    [NotMapped]
+    public string? BookCoverImage { get; set; }
+    public virtual Author BookAuthor { get; set; }
+    public virtual Publisher BookPublisher  { get; set; }
+    public virtual ICollection<BookReview> BookReviews  { get; set; }
+}
+
+public partial class BookReview : BaseEntity<int>
+{
+    public int BookId { get; set; }
+    public byte ReviewRate { get; set; }
+    public DateTime DateOfReview { get; set; }
+    public virtual Book RatedBook { get; set; }
+}
+
+
+-- AppDB Context 
+
+  public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Publisher> Publishers { get; set; }
+    public DbSet<BookReview> BookReviews { get; set; }
+
+    ----- OnModelCreating
+    
+        modBuild.Entity<Book>()
+            .ToTable("Books")
+            .HasOne(o => o.BookAuthor)
+            .WithMany(b => b.AutherBooks)
+            .HasForeignKey(k => k.AutherId);
+
+        modBuild.Entity<Book>()
+            .HasOne(o => o.BookPublisher)
+            .WithMany(b => b.PublishedBooks)
+            .HasForeignKey(k => k.PublisherId);
+
+        modBuild.Entity<BookReview>()
+            .ToTable("BookReviews")
+           .HasOne(o => o.RatedBook)
+           .WithMany(b => b.BookReviews)
+           .HasForeignKey(k => k.BookId);
+        modBuild.Entity<Author>()
+           .ToTable("Authors");
+        modBuild.Entity<Publisher>()
+          .ToTable("Publishers");
+---- Seed 
+#region Books Module Data 
+        string path = Directory.GetCurrentDirectory();
+        string filePath = "|DataDirectory|\\DB\\Book1.csv".Replace("|DataDirectory|", path);
+        var allLines = File.ReadAllLines(filePath);
+        Console.Write(filePath);
+        // reading books data 
+        List<string> titles = new();
+        List<string> authors = new();
+        List<string> rating = new();
+        List<string> languages = new();
+        List<string> isbns = new();
+        List<string> genres = new();
+        List<string> characters = new();
+        List<string> editions = new();
+        List<string> pages = new();
+        List<string> publishers = new();
+
+        List<int> pricesList = new();
+        List<DateTime> publishDatesAsDate = new();
+        int counLines = 0;
+        var randomDate = DateTime.Now.AddDays(new Random().Next(20, 50900) * -1);
+        foreach (var line in allLines)
+        {
+            var values = line.Split(',');
+            try
+            {
+                if (counLines != 0)
+                {
+
+                    titles.Add(values[0] ?? "");
+                    authors.Add(values[1] ?? "");
+                    rating.Add(values[2] ?? "");
+                    languages.Add(values[3] ?? "");
+                    isbns.Add(values[4] ?? "");
+                    genres.Add(values[5] ?? "");
+                    characters.Add(values[6] ?? "");
+                    editions.Add(values[8] ?? "");
+                    var done = int.TryParse(values[9] ?? "0", out int pr);
+                    pages.Add(done ? pr.ToString() : "0");
+                    publishers.Add(values[10] ?? "");
+                    try
+                    {
+                        publishDatesAsDate.Add(DateTime.Parse(values[11] ?? ""));
+                    }
+                    catch (Exception exp)
+                    {
+                        Console.WriteLine("Err Date On Counter :" + counLines);
+                        publishDatesAsDate.Add(randomDate.AddDays(1));
+                    }
+                    try
+                    {
+                        pricesList.Add(int.Parse(values[18] ?? "0"));
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Err Price On Counter :" + counLines);
+                        pricesList.Add(0);
+                    }
+
+                }
+            }
+            catch
+            {
+                Console.WriteLine(line);
+            }
+            counLines++;
+        }
+        List<Author> authoresList = new();
+        List<Publisher> publishersList = new();
+        List<Book> booksList = new();
+        int counter = 0;
+        authors.ForEach((a) =>
+        {
+            authoresList.Add(new Author { AuthorName = a, Id = ++counter , 
+                DateOfBirth = DateTime.Now.AddDays(new Random().Next(2000,50900)*-1)
+            });
+        });
+        counter = 0;
+        authoresList = authoresList.DistinctBy(x => x.AuthorName).ToList();
+       
+        publishers.ForEach((a) =>
+        {
+            publishersList.Add(new Publisher { PublisherName = string.IsNullOrEmpty(a) ? "" : a, Id = ++counter });
+        });
+        publishersList= publishersList.DistinctBy(x => x.PublisherName).ToList();
+
+        counter = 0;
+        titles.ForEach(t =>
+        {
+            if(counter != 0 && counter != 3188)
+            {
+                Book bookItem = new();
+                try
+                {
+                    var author = authoresList.FirstOrDefault(a => a.AuthorName == authors.ElementAt(counter));
+                    var publisher = publishersList.FirstOrDefault(a => a.PublisherName == publishers.ElementAt(counter));
+                    var price = pricesList.ElementAt(counter);
+                    var chars = characters.ElementAt(counter).Replace("[", "").Replace("]", "").Replace("\"", "").Replace("\'", "").Split("#");
+                    var gens = genres.ElementAt(counter).Replace("[", "").Replace("]", "").Replace("\"", "").Replace("\'", "").Split("#");
+
+                    bookItem = new()
+                    {
+                        BookName = t,
+                        BookDescription = t,
+                        AutherId = author != null ? author.Id : authoresList.First().Id,
+                        Characters = string.Join("#", chars),
+                        Id = counter,
+                        ISBN = @$"{isbns.ElementAt(counter)}",
+                        DateOfRelease = publishDatesAsDate.ElementAt(counter),
+                        Language = $@"{languages.ElementAt(counter)}",
+                        GeneresTags = @$"{string.Join("#", gens)}",
+                        NumberOfPages = int.Parse(pages.ElementAt(counter)),
+                        PublisherId = publisher != null ? publisher.Id : publishersList.First().Id,
+                        BookPriceInUSD = price,
+
+                    };
+                    booksList.Add(bookItem);
+                }
+                catch (Exception exp)
+                {
+                    Console.WriteLine("adding book no  " + counter + " Failed ");
+                    Console.WriteLine("\n--------\n" + JsonConvert.SerializeObject(bookItem) + "\n --------------");
+                    Console.WriteLine("-------------- \n " + exp + "\n ----------");
+                }
+            }
+            ++counter;
+        });
+        Console.WriteLine("booksList count  " + booksList.Count);
+        modBuild.Entity<Author>().HasData(authoresList);
+        modBuild.Entity<Publisher>().HasData(publishersList);
+        modBuild.Entity<Book>().HasData(booksList);
+        Console.WriteLine("Seed Books Done ");
+        #endregion Books
+
+-- Console 
+add-migration -context AppDbContext "AddingBookmoduleExample"
+ update-database
+--- Migration would take 10 minuits 
+
+--- Query .cs 
+
+ [UseDbContext(typeof(AppDbContext))]
+    // allow to query a child object
+    [UsePaging(MaxPageSize = 1000, IncludeTotalCount = true, DefaultPageSize = 10)]
+    [UseProjection]
+    [UseFiltering]
+    [UseSorting]
+    public IQueryable<Book> GetBooks([ScopedService] AppDbContext _ctox)
+    {
+        return _ctox.Books;
+    }

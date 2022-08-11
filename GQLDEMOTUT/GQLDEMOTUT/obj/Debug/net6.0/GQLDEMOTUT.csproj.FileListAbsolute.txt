@@ -87,3 +87,4 @@ D:\A_S\AhmedSamirOwnFiles\My_GraphQL_Tutorial\repo\sure_tut_gql\GQLDEMOTUT\GQLDE
 D:\A_S\AhmedSamirOwnFiles\My_GraphQL_Tutorial\repo\sure_tut_gql\GQLDEMOTUT\GQLDEMOTUT\obj\Debug\net6.0\GQLDEMOTUT.pdb
 D:\A_S\AhmedSamirOwnFiles\My_GraphQL_Tutorial\repo\sure_tut_gql\GQLDEMOTUT\GQLDEMOTUT\obj\Debug\net6.0\GQLDEMOTUT.genruntimeconfig.cache
 D:\A_S\AhmedSamirOwnFiles\My_GraphQL_Tutorial\repo\sure_tut_gql\GQLDEMOTUT\GQLDEMOTUT\obj\Debug\net6.0\ref\GQLDEMOTUT.dll
+D:\A_S\AhmedSamirOwnFiles\My_GraphQL_Tutorial\repo\sure_tut_gql\GQLDEMOTUT\GQLDEMOTUT\bin\Debug\net6.0\DB\Book1.csv

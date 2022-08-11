@@ -1,5 +1,4 @@
-﻿
-namespace GQLDEMOTUT.Entities;
+﻿namespace GQLDEMOTUT.Entities;
 
 public partial class Post : BaseEntity<Guid>
 {
@@ -13,3 +12,4 @@ public partial class Post : BaseEntity<Guid>
     public virtual ICollection<CommentToPostOrComment> PostComments { get; set; }
 
 }
+
